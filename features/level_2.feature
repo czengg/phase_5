@@ -10,6 +10,7 @@ Feature: Manage events
 	# READ METHODS
 	Scenario: View all events
 		When I go to the events page
+		# Then show me the page
 		Then I should see "List of Events"
 		And I should see "Name"
 		And I should see "Active"

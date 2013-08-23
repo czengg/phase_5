@@ -27,6 +27,24 @@ class Dojo < ActiveRecord::Base
   def current_students
     self.students.alphabetical.select{|s| s.current_dojo == self}.uniq
   end
+
+  def city_state
+    "#{city}, #{state}"
+  end
+
+  def current_students_proper_name
+    current_students.map do |s|
+      s.proper_name + "-" + s.string_rank
+    end
+    # current_students.map{|s| s.proper_name }
+  end
+
+  def current_students_name
+    current_students.map do |s| 
+      s.name + "-" + s.string_rank
+    end
+    # current_students.map{|s| s.name}
+  end
   
   # Callbacks
   before_destroy :check_if_destroyable

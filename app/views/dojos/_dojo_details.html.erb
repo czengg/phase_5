@@ -1,0 +1,22 @@
+<p>
+  <b>Dojo:</b> <%= @dojo.name %>
+</p>
+
+<p>
+  <b>Street:</b> 
+  <%= @dojo.street %>
+</p>
+
+<p>
+  <b>City:</b> 
+  <%= @dojo.city_state + " " + @dojo.zip %>
+</p>
+
+<p>
+  <b>Current Members:</b> 
+  <%= @dojo.current_students_name %>
+</p>
+
+<p>
+  <b>Active:</b> <%= @dojo.active ? "Yes" : "No" %>
+</p>

@@ -40,6 +40,7 @@ Feature: Manage tournaments
     And I should see "Sections"
     And I should see "Event"
     And I should see "Age"
+    
     And I should not see "Dan Tournament"
     And I should not see "First Dan and up"
     And I should not see "true"

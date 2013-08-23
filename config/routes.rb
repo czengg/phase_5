@@ -5,6 +5,10 @@ Karate67272::Application.routes.draw do
   resources :registrations
   resources :sections
   resources :students
+  resources :sessions
+  resources :users
+  resources :tournaments
+  resources :dojos
   
   # Semi-static page routes
   match 'home' => 'home#index', :as => :home
@@ -15,6 +19,11 @@ Karate67272::Application.routes.draw do
 
   # Set the root url
   root :to => 'home#index'
+
+  match 'user/edit' => 'users#edit', :as => :edit_current_user
+  match 'signup' => 'users#new', :as => :signup
+  match 'logout' => 'sessions#destroy', :as => :logout
+  match 'login' => 'sessions#new', :as => :login
   
 end
 

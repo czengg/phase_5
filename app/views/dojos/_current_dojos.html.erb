@@ -1,0 +1,37 @@
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+  			<th>Street</th>
+        <th>City</th>
+        <th>Members</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @dojos.each do |dojo| %>
+        <tr>
+          <td><%= link_to dojo.name, dojo_path(dojo) %>
+          </td>
+          <td><%= link_to dojo.street, dojo_path(dojo) %>
+          </td>
+          <td><%= link_to dojo.city_state, dojo_path(dojo) %>
+          </td>
+          <td><%= link_to dojo.current_students_proper_name, dojo_path(dojo) %>
+          </td>
+          
+  				<td>
+  					<%= link_to raw("<i class='icon-file'></i> Details"), dojo_path(dojo), :class => 'btn btn-mini' %>
+            <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_dojo_path(dojo), :class => 'btn btn-mini' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="digg_pagination">
+    <div clas="page_info">
+      <%= page_entries_info @dojos %>
+    </div>
+    <%= will_paginate @dojos, :container => true, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+  </div>

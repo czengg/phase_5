@@ -60,6 +60,10 @@ class Student < ActiveRecord::Base
   def over_18?
     date_of_birth < 18.years.ago.to_date
   end
+
+  def string_rank
+    RANKS[self.rank]
+  end
   
   def current_dojo
     current_dojo = self.dojo_students.select{|ds| ds.end_date.nil?}
