@@ -33,17 +33,23 @@ class Dojo < ActiveRecord::Base
   end
 
   def current_students_proper_name
-    current_students.map do |s|
-      s.proper_name + "-" + s.string_rank
+    if current_students.empty?
+      "None at this time"
+    else
+      current_students.map do |s|
+        s.proper_name + "-" + s.string_rank
+      end
     end
-    # current_students.map{|s| s.proper_name }
   end
 
   def current_students_name
-    current_students.map do |s| 
-      s.name + "-" + s.string_rank
+    if current_students.empty?
+      "None at this time"
+    else
+      current_students.map do |s| 
+        s.name + "-" + s.string_rank
+      end
     end
-    # current_students.map{|s| s.name}
   end
   
   # Callbacks

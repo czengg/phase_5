@@ -16,6 +16,7 @@ Feature: Manage tournaments
 		And I should see "Ranks"
 		And I should see "Fall Classic"
 		And I should see "Tenth Gup - Third Dan"
+        Then show me the page
 		And I should see "5"
 		And I should see "Dan Tournament"
 		And I should see "First Dan and up"
@@ -53,9 +54,11 @@ Feature: Manage tournaments
   
   Scenario: Event name in tourney details is a link to section details
     When I go to the details page for fall classic
+    Then show me the page
     And I click on the link "Sparring"
     Then I should see "Gruberman, Ed"
     And I should see "Gruberman, Ted"
+    Then show me the page
     And I should see "Event: Sparring"
     And I should see "Tenth Gup - Ninth Gup"
     And I should see "Active: Yes"

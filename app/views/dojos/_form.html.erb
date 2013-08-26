@@ -5,6 +5,8 @@
     <%= f.input :name, :as => :string %>
     <%= f.input :street, :as => :string %>
     <%= f.input :city, :as => :string %>
+    <%= f.input :state, :collection => Dojo::STATES_LIST %>
+    <%= f.input :zip, :as => :string %>
     <%= f.input :active %>
 
     <div class="form-actions">

@@ -62,7 +62,7 @@ class Student < ActiveRecord::Base
   end
 
   def string_rank
-    RANKS[self.rank]
+    RANKS[self.rank-1][0]
   end
   
   def current_dojo
@@ -71,6 +71,12 @@ class Student < ActiveRecord::Base
     # current_dojo = self.dojo_students.current    # will also return an array of current dojo assignments
     return nil if current_dojo.empty?
     current_dojo.first.dojo   # return as a single dojo object, not an array of dojo assignments
+  end
+
+  def current_tournament
+    current_tournament = self.registrations.select{|r| r.section.tournament}
+    return nil if current_tournament.empty?
+    current_tournament.first.tournament   # return as a single dojo object, not an array of dojo assignments
   end
   
   def self.registered_for_section(section_id)

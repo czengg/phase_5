@@ -26,6 +26,18 @@ class Tournament < ActiveRecord::Base
   before_destroy :check_if_destroyable
   after_rollback :deactivate_tournament_logic, :on => :destroy
 
+  def current_sections
+    self.sections.active.select{|s| s.tournament_id == self.id}.uniq
+  end
+
+  def current_events
+    current_sections.map{|s| s.event}.uniq
+  end
+
+  def current_students
+    self.students.alphabetical.select{|s| s.current_tournament == self}.uniq
+  end
+
   private
   def check_if_destroyable
     if self.registrations.empty?

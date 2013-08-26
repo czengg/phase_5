@@ -13,6 +13,13 @@
 </p>
 
 <p>
+  <b>Events:</b>
+  <% @tournament.current_events.each do |e| %>
+    <%= link_to e.name, section_path(e.current_section(@tournament.id)) %>
+  <% end %>
+</p>
+
+<p>
   <b>Age:</b> 
   
 </p>

@@ -24,6 +24,10 @@ class Event < ActiveRecord::Base
     self.active = true
     self.save!
   end
+
+  def current_section(tournament_id)
+    self.sections.for_tournament(tournament_id).select{|s| s.event_id == self.id}
+  end
   
   # Callbacks
   before_destroy :check_if_destroyable
