@@ -1,18 +1,36 @@
-<%= simple_form_for @student, :html => { :class => 'form-horizontal' } do |f| %>
-  <fieldset>
-    <legend><%= controller.action_name.capitalize %> Student</legend>
-		
-		<%= f.input :first_name %>
-		<%= f.input :last_name %>
-		<%= f.input :date_of_birth, :label => "Date of Birth", :as => :date, :start_year => Date.today.year - 4, :end_year => Date.today.year - 75, :order => [:month, :day, :year], :include_blank => true %>
-		<%= f.input :phone %>
-		<%= f.input :rank, :collection => Student::RANKS %>
-		<%= f.input :waiver_signed %>
-		<%= f.input :active %>
+<%= simple_nested_form_for @student, :html => { :class => 'form-horizontal' } do |f| %>
+	<div class="row">
+		<div class="span7">
+		  <fieldset>
+		    <legend><%= controller.action_name.capitalize %> Student</legend>
+				
+				<%= f.input :first_name %>
+				<%= f.input :last_name %>
+				<%= f.input :date_of_birth, :label => "Date of Birth", :as => :date, :start_year => Date.today.year - 4, :end_year => Date.today.year - 75, :order => [:month, :day, :year], :include_blank => true %>
+				<%= f.input :phone %>
+				<%= f.input :rank, :collection => Student::RANKS %>
+				<%= f.input :waiver_signed %>
+				<%= f.input :active %>
+		  </fieldset>
+		</div>
+
+		<div class="span5">
+        <legend>User for this student</legend>
+          <div id="student_user">
+            <%= f.simple_fields_for :user do |user_form| %>
+              <%= render :partial => "user_fields", :locals => { :f => user_form } %>
+            <% end %>
+            <p>
+              <br /><%= f.link_to_add(raw("<i class='icon-plus icon-white'></i> Add User"), :user, :class => 'btn btn-mini btn-primary') %>
+            </p>
+          </div>
+        </div>
+    </div>
 
     <div class="form-actions">
       <%= f.submit nil, :class => 'btn btn-primary' %>
       <%= link_to 'Cancel', students_path, :class => 'btn' %>
     </div>
-  </fieldset>
+
+
 <% end %>
