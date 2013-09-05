@@ -12,11 +12,21 @@
   <%= @dojo.city_state + " " + @dojo.zip %>
 </p>
 
-<p>
-  <b>Current Members:</b> 
-  <%= @dojo.current_students_name %>
-</p>
+<% if @user && @user.is_admin? %>
+  <p>
+    <b>Current Members:</b> 
+    <ul>
+  	  <% @dojo.current_students.each do |s| %>
+  	  	<li>
+  		<%= s.name + " - " + s.string_rank %>
+  		</li>
+  	  <% end %>
+  	</ul>
+  </p>
+<% end %>
 
 <p>
   <b>Active:</b> <%= @dojo.active ? "Yes" : "No" %>
 </p>
+
+<%= image_tag @dojo.create_map_link %>

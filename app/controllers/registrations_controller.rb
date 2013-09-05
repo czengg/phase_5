@@ -19,6 +19,7 @@ class RegistrationsController < ApplicationController
   def create
     @registration = Registration.new(params[:registration])
     @registration.date = Date.today
+    @registration.section_id = Section.for_event(@registration.event.id).for_tournament(@registration.tournament.id).first.id
     if @registration.save!
       # if saved to database
       flash[:notice] = "Successfully created registration for #{@registration.student.proper_name}."

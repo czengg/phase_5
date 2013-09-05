@@ -1,5 +1,7 @@
 class DojosController < ApplicationController
 
+  skip_before_filter :check_login, :only => [:index, :show]
+
   def index
     @dojos = Dojo.active.alphabetical.paginate(:page => params[:page]).per_page(8)
   end
@@ -10,10 +12,12 @@ class DojosController < ApplicationController
   
   def new
     @dojo = Dojo.new
+    authorize! :new, @dojo
   end
 
   def edit
     @dojo = Dojo.find(params[:id])
+    authorize! :update, @dojo
   end
 
   def create
@@ -26,6 +30,7 @@ class DojosController < ApplicationController
       # return to the 'new' form
       render :action => 'new'
     end
+    authorize! :new, @dojo
   end
 
   def update
@@ -36,6 +41,7 @@ class DojosController < ApplicationController
     else
       render :action => 'edit'
     end
+    authorize! :update, @dojo
   end
 
   def destroy
@@ -44,5 +50,6 @@ class DojosController < ApplicationController
     flash[:notice] = "Successfully removed dojo from karate dojo system"
     # redirect_to dojos_url
     redirect_to @dojo # go to show dojo page
+    authorize! :destroy, @dojo
   end
 end

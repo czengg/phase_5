@@ -21,7 +21,11 @@
 
 <p>
   <b>Age:</b> 
-  
+  <% if @tournament.current_sections.empty? %>
+    <p>No sections at this time</p>
+  <% else %>
+    <%= age_range_for(@tournament) %>
+  <% end %>
 </p>
 
 <p>

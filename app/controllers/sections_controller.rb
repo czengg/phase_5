@@ -1,7 +1,11 @@
 class SectionsController < ApplicationController
 
   def index
-    @sections = Section.alphabetical.paginate(:page => params[:page]).per_page(8) 
+    if params[:tournament_id]
+      @sections = Section.for_tournament(params[:tournament_id]).alphabetical.paginate(:page => params[:page]).per_page(8)
+    else
+      @sections = Section.active.alphabetical.paginate(:page => params[:page]).per_page(8)
+    end
   end
 
   def show

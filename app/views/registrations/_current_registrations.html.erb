@@ -1,0 +1,51 @@
+
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th>Student</th>
+        <th>Event</th>
+  			<th>Date</th>
+  			<th>Fee Paid</th>
+        <th>Final Standing</th>
+  			<th class="centered">Registrants</th>
+        <th>&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @registrations.each do |registration| %>
+        <tr>
+          <td><%= link_to registration.student.proper_name, registration_path(registration) %>
+          </td>
+          <td><%= link_to registration.section.event.name, registration_path(registration) %>
+          </td>
+          <td><%= link_to registration.date, registration_path(registration) %>
+          </td>
+          <td>
+            <% if registration.fee_paid %>
+              <%= link_to 'Paid', registration_path(registration) %>
+            <% else %>
+              <%= link_to 'Unpaid', registration_path(registration) %>
+            <% end %>
+          </td>
+          <td>
+            <% if registration.final_standing != nil %>
+              <%= link_to registration.final_standing, registration_path(registration) %>
+            <% else %>
+              Pending
+            <% end %>
+          </td>
+          
+  				<td>
+  					<%= link_to raw("<i class='icon-file'></i> Details"), registration_path(registration), :class => 'btn btn-mini' %>
+            <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_registration_path(registration), :class => 'btn btn-mini' %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="digg_pagination">
+    <div clas="page_info">
+      <%= page_entries_info @registrations %>
+    </div>
+    <%= will_paginate @registrations, :container => true, :previous_label => "Previous", :next_label => "Next", :inner_window => 2 %>
+  </div>

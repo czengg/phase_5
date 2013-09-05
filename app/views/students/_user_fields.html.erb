@@ -1,0 +1,19 @@
+<div class="fields">
+	<div class="min_user">
+		<!-- x icon to remove -->
+		<%= f.link_to_remove(raw("<i class='icon-remove'></i>")) %>
+		<!-- fields -->
+		<p>
+	      <%= f.label :email, "Email Address" %><br />
+	      <%= f.text_field :email %>
+	    </p>
+	    <p>
+	      <%= f.label :password %><br />
+	      <%= f.password_field :password %>
+	    </p>
+	    <p>
+  	      <%= f.label :password_confirmation, "Confirm Password" %><br />
+	      <%= f.password_field :password_confirmation %>
+	    </p>
+	</div>
+</div>

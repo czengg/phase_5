@@ -38,6 +38,26 @@ class Tournament < ActiveRecord::Base
     self.students.alphabetical.select{|s| s.current_tournament == self}.uniq
   end
 
+  def min_age
+    m_age = current_sections[0].min_age
+    current_sections.each do |s|
+      if s.min_age < m_age
+        m_age = s.min_age
+      end
+    end
+    m_age
+  end
+
+  def max_age
+    x_age = current_sections[0].max_age
+    current_sections.each do |s|
+      if s.max_age > x_age
+        x_age = s.max_age
+      end
+    end
+    x_age
+  end
+
   private
   def check_if_destroyable
     if self.registrations.empty?

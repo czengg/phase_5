@@ -5,6 +5,7 @@
         <th>Date</th>
         <th>Name</th>
   			<th>Ranks</th>
+        <th>Students Registered</th>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -17,6 +18,10 @@
           </td>
           <td>
             <%= rank_range_for(tournament) %>
+          </td>
+
+          <td>
+            <%= tournament.students.count %>
           </td>
           
   				<td>
