@@ -7,7 +7,8 @@
 	  </p>
 		<p>
 		  Upcoming Tournaments:
-		  <%= render :partial => "current_tournaments" %>
+		  <% @tournaments = Tournament.active.alphabetical.paginate(:page => params[:page]).per_page(8) %>
+		  <%= render :partial => "tournaments/current_tournaments" %>
 		</p>
 	</div>
 	<div class="span4">

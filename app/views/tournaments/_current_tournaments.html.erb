@@ -4,8 +4,10 @@
       <tr>
         <th>Date</th>
         <th>Name</th>
-  			<th>Ranks</th>
-        <th>Students Registered</th>
+        <% if current_user != nil && current_user.is_admin %>
+  			  <th>Ranks</th>
+          <th>Students Registered</th>
+        <% end %>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -16,18 +18,20 @@
           </td>
           <td><%= link_to tournament.name, tournament_path(tournament) %>
           </td>
-          <td>
-            <%= rank_range_for(tournament) %>
-          </td>
+          <% if current_user != nil && current_user.is_admin %>
+            <td>
+              <%= rank_range_for(tournament) %>
+            </td>
 
-          <td>
-            <%= tournament.students.count %>
-          </td>
-          
-  				<td>
-  					<%= link_to raw("<i class='icon-file'></i> Details"), tournament_path(tournament), :class => 'btn btn-mini' %>
-            <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_tournament_path(tournament), :class => 'btn btn-mini' %>
-          </td>
+            <td>
+              <%= tournament.students.count %>
+            </td>
+            
+    				<td>
+    					<%= link_to raw("<i class='icon-file'></i> Details"), tournament_path(tournament), :class => 'btn btn-mini' %>
+              <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_tournament_path(tournament), :class => 'btn btn-mini' %>
+            </td>
+          <% end %>
         </tr>
       <% end %>
     </tbody>

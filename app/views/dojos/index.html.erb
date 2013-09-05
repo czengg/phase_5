@@ -5,4 +5,6 @@
 	</div>
 </div>
 
-<%= link_to raw("<i class='icon-plus icon-white'></i> Add a New Dojo"), new_dojo_path, :class => 'btn btn-primary', :id => 'Create Dojo' %>
+<% if current_user != nil && current_user.is_admin %>
+  <%= link_to raw("<i class='icon-plus icon-white'></i> Add a New Dojo"), new_dojo_path, :class => 'btn btn-primary', :id => 'Create Dojo' %>
+<% end %>

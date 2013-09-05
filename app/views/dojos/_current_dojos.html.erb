@@ -5,7 +5,7 @@
         <th>Name</th>
   			<th>Street</th>
         <th>City</th>
-        <% if @user && @user.is_admin? %>
+        <% if current_user != nil && current_user.is_admin %>
           <th>Members</th>
         <% end %>
         <th>&nbsp;</th>
@@ -20,7 +20,7 @@
           </td>
           <td><%= link_to dojo.city_state, dojo_path(dojo) %>
           </td>
-          <% if @user && @user.is_admin? %>
+          <% if current_user != nil && current_user.is_admin %>
             <td>
               <ul style="list-style: none;">
                 <% dojo.current_students.each do |s| %>
@@ -34,7 +34,9 @@
           
   				<td>
   					<%= link_to raw("<i class='icon-file'></i> Details"), dojo_path(dojo), :class => 'btn btn-mini' %>
-            <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_dojo_path(dojo), :class => 'btn btn-mini' %>
+            <% if current_user != nil && current_user.is_admin %>
+              <%= link_to raw("<i class='icon-pencil'></i> Edit"), edit_dojo_path(dojo), :class => 'btn btn-mini' %>
+            <% end %>
           </td>
         </tr>
       <% end %>
