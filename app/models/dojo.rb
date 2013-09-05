@@ -32,16 +32,6 @@ class Dojo < ActiveRecord::Base
     "#{city}, #{state}"
   end
 
-  def current_students_proper_name
-    if current_students.empty?
-      "None at this time"
-    else
-      current_students.map do |s|
-        s.proper_name + "-" + s.string_rank
-      end
-    end
-  end
-
   def current_students_name
     if current_students.empty?
       "None at this time"
@@ -53,6 +43,7 @@ class Dojo < ActiveRecord::Base
   end
 
   def create_map_link(zoom=12,width=800,height=800)
+    i = 1
     markers = "&markers=color:red%7Ccolor:red%7Clabel:#{i}%7C#{latitude},#{longitude}"
     map = "http://maps.google.com/maps/api/staticmap?center=#{latitude},#{longitude}&zoom=#{zoom}&size=#{width}x#{height}&maptype=roadmap#{markers}&sensor=false"
   end

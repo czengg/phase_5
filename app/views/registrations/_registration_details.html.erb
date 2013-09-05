@@ -1,0 +1,21 @@
+<p>
+	<b>Student:</b> <%= @registration.student.proper_name %>
+</p>
+
+<p>
+	<b>Event:</b> <%= @registration.section.event.name %>
+</p>
+
+<p>
+  <b>Date:</b> 
+  <%= @registration.date %>
+</p>
+
+<p>
+  <b>Fee Paid:</b> 
+  <%= @registration.fee_paid ? "Yes" : "No" %>
+</p>
+
+<p>
+  <b>Final Standing:</b> <%= @registration.final_standing %>
+</p>

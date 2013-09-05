@@ -1,8 +1,15 @@
 <div class="nav-collapse">
   <ul class="nav">
-    <li><%= link_to "Students", students_path %></li>
-    <li><%= link_to "Sections", sections_path %></li>
-    <li><%= link_to "Events", events_path %></li>
-		<!-- <li><%# link_to "Registrations", registrations_path %></li> -->
+    <% if !@user %>
+      <li><%= link_to "Log In", 'login' %></li>
+    <% end %>
+    <li><%= link_to "Dojos", dojos_path %></li>
+  	<% if @user && @user.is_admin? %>
+      <li><%= link_to "Students", students_path %></li>
+      <li><%= link_to "Sections", sections_path %></li>
+      <li><%= link_to "Events", events_path %></li>
+      <li><%= link_to "Tournaments", tournaments_path %></li>
+      <li><%= link_to "Registrations", registrations_path %></li>
+    <% end %>
   </ul>
 </div>

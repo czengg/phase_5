@@ -5,7 +5,9 @@
         <th>Name</th>
   			<th>Street</th>
         <th>City</th>
-        <th>Members</th>
+        <% if @user && @user.is_admin? %>
+          <th>Members</th>
+        <% end %>
         <th>&nbsp;</th>
       </tr>
     </thead>
@@ -18,8 +20,17 @@
           </td>
           <td><%= link_to dojo.city_state, dojo_path(dojo) %>
           </td>
-          <td><%= link_to dojo.current_students_proper_name, dojo_path(dojo) %>
-          </td>
+          <% if @user && @user.is_admin? %>
+            <td>
+              <ul style="list-style: none;">
+                <% dojo.current_students.each do |s| %>
+                  <li>
+                  <%= link_to s.name_rank, student_path(s.id) %>
+                  </li>
+                <% end %>
+              </ul>
+            </td>
+          <% end %>
           
   				<td>
   					<%= link_to raw("<i class='icon-file'></i> Details"), dojo_path(dojo), :class => 'btn btn-mini' %>

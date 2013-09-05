@@ -19,6 +19,8 @@ class Student < ActiveRecord::Base
   has_many :dojo_students
   has_many :dojos, :through => :dojo_students
   
+  accepts_nested_attributes_for :user, :reject_if => lambda { |user| user[:email].blank? }
+
   # Scopes
   scope :alphabetical, order('last_name, first_name')
   scope :by_rank, order('rank DESC')
@@ -63,6 +65,10 @@ class Student < ActiveRecord::Base
 
   def string_rank
     RANKS[self.rank-1][0]
+  end
+
+  def name_rank
+    "#{proper_name} - #{string_rank}"
   end
   
   def current_dojo
