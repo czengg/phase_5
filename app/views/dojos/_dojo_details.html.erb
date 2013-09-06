@@ -12,7 +12,7 @@
   <%= @dojo.city_state + " " + @dojo.zip %>
 </p>
 
-<% if @user && @user.is_admin? %>
+<% if @user && (@user.is_admin? || @user.is_member?) %>
   <p>
     <b>Current Members:</b> 
     <ul>

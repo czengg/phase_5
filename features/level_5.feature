@@ -13,10 +13,10 @@ Feature: Manage tournaments
     Then I should see "Tournaments"
 		And I should see "Date"
 		And I should see "Name"
+        Then show me the page
 		And I should see "Ranks"
 		And I should see "Fall Classic"
 		And I should see "Tenth Gup - Third Dan"
-        Then show me the page
 		And I should see "5"
 		And I should see "Dan Tournament"
 		And I should see "First Dan and up"

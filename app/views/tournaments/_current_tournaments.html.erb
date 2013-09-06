@@ -4,7 +4,7 @@
       <tr>
         <th>Date</th>
         <th>Name</th>
-        <% if current_user != nil && current_user.is_admin %>
+        <% if @user != nil && (@user.is_admin? || @user.is_member?) %>
   			  <th>Ranks</th>
           <th>Students Registered</th>
         <% end %>

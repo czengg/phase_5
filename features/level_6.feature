@@ -14,6 +14,7 @@ Feature: Manage dojos
 		And I should see "CMU"
 		And I should see "North Side"
 		And I should see "Pittsburgh, PA"
+		Then show me the page
 		And I should see "Members"
 		And I should see "2"
     And I should not see "true"
@@ -29,6 +30,7 @@ Feature: Manage dojos
 		And I should see "North Side"
 		And I should see "250 East Ohio St"
 		And I should see "Pittsburgh, PA 15212"
+		Then show me the page
 		And I should see "Current Members"
 		And I should see "Gruberman, Ted"
 		And I should see "Gruberman, Fred"
@@ -46,6 +48,7 @@ Feature: Manage dojos
 		And I should see "CMU"
 		And I should see "5000 Forbes Avenue"
 		And I should see "Pittsburgh, PA 15213"
+		Then show me the page
 		And I should see "Current Members"
 		And I should see "Major, Noah"
 		And I should see "Corrlucci, Steve"
